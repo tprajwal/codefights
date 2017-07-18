@@ -1,31 +1,21 @@
 def zigzag(n):
+    temp = []
     result = []
-    prevEle = -1
-    started = False
-    prevRise = False
-    for ele in n:
-        if len(result) == 0 and started:
-                if ele < prevEle:
-                    result.append(0)
-        if started:    
-            if ele > prevEle:
-                if prevRise:
-                    result[len(result)-1] = result[len(result)-1] + 1
+    while n:
+        temp.append(n[0])
+        for i in xrange(len(a)):
+            try:
+                if (n[i] > n[i + 1] and n[i] > n[abs(i - 1)]) or \
+                        (n[i] < n[i + 1] and n[i] < n[abs(i - 1)]):
+                    temp.append(n[i + 1])
                 else:
-                    result.append(1)
-                prevRise = True    
-            else:
-                if prevRise:
-                    result.append(1)
-                else:
-                    if len(result) == 1:
-                        result.append(1)
-                    else:
-                        result[len(result)-1] = result[len(result)-1] + 1
-                prevRise = False    
-
-        prevEle = ele
-        started = True;
+                    break
+            except IndexError:
+                pass
+        if len(result) <= len(temp):
+            result = temp
+        n.pop(0)
+        temp = []
     return result
          
 
